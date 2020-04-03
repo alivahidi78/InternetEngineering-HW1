@@ -1,0 +1,22 @@
+{
+  "name": "ie-project-phase1",
+  "version": "1.0.0",
+  "description": "The first homework of the internet engineering course project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ie-project-phase1"
+  },
+  "author": "Ali Vahidi",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}

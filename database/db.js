@@ -29,9 +29,9 @@ let writeRawData = (data) => {
 }
 
 let addPolygon = (polygon) => {
-    getRawData.then((value) => {
+    return getRawData.then((value) => {
         value.features.push(polygon);
-        return writeRawData(value);
+        writeRawData(value).then(resolve());
     })
 }
 

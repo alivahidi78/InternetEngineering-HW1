@@ -24,11 +24,9 @@ let addAndRespond = (req, res) => {
     let polygon = req.body;
     //Checking for validness of polygon
     if (GJV.isFeature(polygon)) {
-        db.addPolygon(polygon)
-        // .then(res.send('DONE'));
+        db.addPolygon(polygon).then(res.send('DONE'));
     }
     //TODO add Error
-    res.send('DONE');
 }
 
 module.exports = { respond, addAndRespond };

@@ -5,7 +5,11 @@ let getRawData = new Promise((resolve, reject) => {
         if (exists) {
             fs.readFile('./database/data.json', (err, data) => {
                 if (!err) {
-                    resolve(JSON.parse(data));
+                    try {
+                        resolve(JSON.parse(data));
+                    } catch (e) {
+                        reject(e);
+                    }
                 } else {
                     reject('Cannot read database');
                 }
@@ -18,20 +22,19 @@ let getRawData = new Promise((resolve, reject) => {
 
 let writeRawData = (data) => {
     return new Promise((resolve, reject) => {
-        fs.writeFile('./database/data.json',JSON.stringify(data), (err) => {
+        fs.writeFile('./database/data.json', JSON.stringify(data), (err) => {
             if (!err)
                 resolve();
             else
-                reject();
+                reject('Cannot write to database');
         })
-        //TODO CHECK FOR ERROR
     })
 }
 
 let addPolygon = (polygon) => {
     return getRawData.then((value) => {
         value.features.push(polygon);
-        writeRawData(value).then(resolve());
+        writeRawData(value).then(resolve()).catch((reason) => reject(reason));
     })
 }
 

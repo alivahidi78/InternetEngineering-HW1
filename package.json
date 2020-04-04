@@ -4,16 +4,19 @@
   "description": "The first homework of the internet engineering course project.",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "ie-project-phase1"
+    "url": "git+https://github.com/alivahidi78/InternetEngineering-HW1.git"
   },
   "author": "Ali Vahidi",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "turf-inside": "^3.0.12",
     "winston": "^3.2.1"
   },
   "devDependencies": {

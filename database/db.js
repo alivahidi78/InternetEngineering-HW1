@@ -1,19 +1,38 @@
 const fs = require('fs');
 
-let getPolygons = new Promise((resolve, reject) => {
+let getRawData = new Promise((resolve, reject) => {
     fs.exists('./database/data.json', (exists) => {
         if (exists) {
             fs.readFile('./database/data.json', (err, data) => {
                 if (!err) {
-                    resolve(JSON.parse(data).features);
+                    resolve(JSON.parse(data));
                 } else {
                     reject('Cannot read database');
                 }
             })
-        }else{
+        } else {
             reject('Database file does not exist');
         }
     })
 })
 
-module.exports = { getPolygons };
+let writeRawData = (data) => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile('./database/data.json',JSON.stringify(data), (err) => {
+            if (!err)
+                resolve();
+            else
+                reject();
+        })
+        //TODO CHECK FOR ERROR
+    })
+}
+
+let addPolygon = (polygon) => {
+    getRawData.then((value) => {
+        value.features.push(polygon);
+        return writeRawData(value);
+    })
+}
+
+module.exports = { getRawData, addPolygon };

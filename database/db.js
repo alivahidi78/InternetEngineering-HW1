@@ -34,7 +34,7 @@ let writeRawData = (data) => {
 let addPolygon = (polygon) => {
     return getRawData.then((value) => {
         value.features.push(polygon);
-        writeRawData(value).then(resolve()).catch((reason) => reject(reason));
+        writeRawData(value);
     })
 }
 
